@@ -28,13 +28,13 @@
 - 고정 구와 숫자+단위는 줄 중간에서 끊기지 않도록 `&nbsp;`로 묶습니다.
 - 날짜는 `년.월.일.` 형식으로 일 뒤에도 마침표를 씁니다(예: 2026.10.30.(금)).
 
-## 배포 (GitHub Pages + 구매 도메인)
+## 배포 (GitHub Pages + uscai.kr)
 
 1. 이 폴더를 저장소 루트로 GitHub에 올립니다. 브랜치 `main`.
 2. 저장소 Settings → Pages → Source: `Deploy from a branch`, Branch: `main` / `/ (root)`.
-3. Custom domain에 구매한 도메인을 입력하고 저장하면 `CNAME` 파일이 생깁니다.
+3. Custom domain은 `CNAME` 파일(`uscai.kr`)로 지정되어 있습니다.
 4. 도메인 등록업체 DNS에 아래를 추가합니다.
-   - 루트 도메인(example.kr): A 레코드 `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   - `www`: CNAME 레코드 → `<GitHub 계정>.github.io`
+   - `uscai.kr` (루트): A 레코드 `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+   - `www.uscai.kr`: CNAME 레코드 → `uscaidev.github.io`
 5. DNS 반영(수 분~수 시간) 후 Pages 화면에서 `Enforce HTTPS`를 켭니다.
 6. 이후 수정은 `index.html`을 고쳐 커밋·푸시하면 1분 안에 반영됩니다.
