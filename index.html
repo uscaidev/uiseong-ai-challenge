@@ -171,7 +171,6 @@ button{font:inherit}
 .slot .sf .btn{padding:11px 22px;font-size:15.5px}
 .slot .sfield{font-size:15px;color:var(--ink-2)}
 .slot .sfield b{color:var(--gold)}
-.slot .sf .cnt{font-size:13.5px;color:var(--muted);margin-left:auto}
 
 /* 공모분야 탭 */
 .tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;border-bottom:1px solid var(--line-2);margin-top:8px}
@@ -382,12 +381,6 @@ button{font:inherit}
 .copyrow .lab{font-size:13px;color:var(--muted);font-weight:600}
 .copyrow .val{font-size:17px;color:var(--gold);word-break:keep-all;overflow-wrap:anywhere;user-select:all;font-weight:700}
 .copyrow .btn{padding:9px 15px;font-size:14.5px}
-.chk{margin-top:16px;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
-.chk b{display:block;font-size:14px;color:var(--gold);margin-bottom:6px}
-.chk label{display:flex;gap:10px;align-items:center;padding:6px 0;font-size:15.5px;color:var(--ink-2);cursor:pointer}
-.chk label:has(input:checked){color:#fff;text-decoration:line-through;text-decoration-color:var(--gold)}
-.chk input{width:18px;height:18px;accent-color:var(--gold)}
-.chk .done{font-size:13.5px;color:var(--muted);margin-top:6px}
 .modal .fine{font-size:14.5px;color:var(--muted);margin-top:18px}
 .toast{position:fixed;left:50%;bottom:calc(112px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(10px);background:var(--gold);color:var(--navy-deep);padding:10px 20px;border-radius:999px;font-size:15px;font-weight:700;opacity:0;transition:.2s;z-index:70;pointer-events:none}
 .toast.show{opacity:1;transform:translateX(-50%)}
@@ -484,7 +477,7 @@ button{font:inherit}
           <div class="reel" id="r1"><div class="win">입력&nbsp;조건</div></div><span class="j">만으로</span>
           <div class="reel" id="r2"><div class="win">결과</div></div><span class="j">를 얻을 수 있는 서비스</span>
         </div>
-        <div class="sf"><button class="btn btn-gold" type="button" id="spin">아이디어&nbsp;뽑기</button><span class="sfield" id="sfield">버튼을 누르면 분야별 예시로 문장이 채워집니다.</span><span class="cnt" id="scnt"></span></div>
+        <div class="sf"><button class="btn btn-gold" type="button" id="spin">아이디어&nbsp;뽑기</button><span class="sfield" id="sfield">버튼을 누르면 분야별 예시로 문장이 채워집니다.</span></div>
       </div>
     </div>
   </div>
@@ -662,15 +655,7 @@ button{font:inherit}
     <div class="dl"><span class="tag w">참고</span><span>공고문<small>경진대회&nbsp;공모&nbsp;전문</small></span><a class="btn btn-line js-form" data-form="notice" href="forms/notice.hwpx" download="AI활용 의성군 서비스 개선 공모제안 경진대회 공고문.hwpx">내려받기</a></div>
     <div class="copyrow"><div><div class="lab">받는&nbsp;사람</div><div class="val" id="m-email">datahj@korea.kr</div></div><button class="btn btn-line js-copy" data-copy="#m-email" type="button">복사</button></div>
     <div class="copyrow"><div><div class="lab">메일제목 · 제출서류명</div><div class="val" id="m-subject">[AI&nbsp;서비스&nbsp;공모] 팀명(또는&nbsp;성명)</div></div><button class="btn btn-line js-copy" data-copy="#m-subject" type="button">복사</button></div>
-    <div class="chk" id="chk"><b>제출&nbsp;전&nbsp;체크 (이&nbsp;브라우저에만&nbsp;저장)</b>
-      <label><input type="checkbox" data-k="a">참가신청서&nbsp;작성 · 참가분야 1개&nbsp;선택</label>
-      <label><input type="checkbox" data-k="b">기본교육&nbsp;참석여부 · 숙박&nbsp;희망여부&nbsp;체크</label>
-      <label><input type="checkbox" data-k="c">개인정보·저작권&nbsp;동의&nbsp;서명 (팀장·팀원)</label>
-      <label><input type="checkbox" data-k="d">기획서 A4&nbsp;1장&nbsp;이내 · 4개&nbsp;항목 작성</label>
-      <label><input type="checkbox" data-k="e">파일명과 메일제목을 [AI&nbsp;서비스&nbsp;공모]&nbsp;팀명 형식으로</label>
-      <div class="done" id="chk-done"></div>
-    </div>
-    <p class="fine">주소와 제목을 복사하신 뒤, 평소 쓰시는 메일 앱(Gmail, 네이버메일 등)을 직접 열어서 보내주세요.</p>
+    <p class="fine">주소와 제목을 복사하신 뒤, 평소 쓰시는 메일 앱을 직접 열어서 보내주세요.</p>
   </div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -687,7 +672,6 @@ button{font:inherit}
   };
   var rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var now=new Date(); function days(t){ return Math.max(0,Math.ceil((new Date(t)-now)/864e5)); }
-  function store(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){ return null; } }
   var s=CONFIG.statusOverride;
   if(!s){ s = now<new Date(CONFIG.closeAt)?'open': now<new Date(CONFIG.finalsAt)?'closed': now<new Date(CONFIG.doneAt)?'finals':'done'; }
   var T={
@@ -790,7 +774,7 @@ button{font:inherit}
       {n:'귀농·귀촌', who:['의성으로 오려는 사람','귀농 희망 가족','귀촌 준비 청년'], inp:['가족 구성과 희망 작목','정착 희망 시기','현재 거주지와 예산'], out:['정착 지원사업 한눈에 보기','귀농 교육 과정 추천','농업창업 지원 안내']},
       {n:'관광·지역경제', who:['의성 방문객','당일치기 여행객','가족 단위 관광객'], inp:['체류 시간과 출발지','관심 테마','식사 취향'], out:['둘러볼 관광지 코스 추천','관내 식당·가맹점 코스','이동 시간을 고려한 일정표']}
     ];
-    var reels=[0,1,2].map(function(k){ return document.getElementById('r'+k); }), spin=document.getElementById('spin'), sf=document.getElementById('sfield'), cnt=document.getElementById('scnt'), busy=false, n=+(store('uiseong-spins')||0);
+    var reels=[0,1,2].map(function(k){ return document.getElementById('r'+k); }), spin=document.getElementById('spin'), sf=document.getElementById('sfield'), busy=false;
     function pick(a){ return a[Math.floor(Math.random()*a.length)]; }
     function run(fi){
       if(busy) return; busy=true; spin.disabled=true;
@@ -799,9 +783,7 @@ button{font:inherit}
       var pools=[F.map(function(z){return z.who[0];}),F.map(function(z){return z.inp[0];}),F.map(function(z){return z.out[0];})];
       reels.forEach(function(r,k){ r.classList.remove('land'); if(!rm){ r.classList.add('spin'); var it=setInterval(function(){ r.querySelector('.win').textContent=pick(pools[k]); },120); setTimeout(function(){ clearInterval(it); r.classList.remove('spin'); r.querySelector('.win').textContent=vals[k]; r.classList.add('land'); if(k===2){ busy=false; spin.disabled=false; } },700+k*450); } else { r.querySelector('.win').textContent=vals[k]; if(k===2){ busy=false; spin.disabled=false; } } });
       sf.innerHTML='분야: <b>'+f.n+'</b> · 예시 조합입니다. 실제 본선 문제와는 무관합니다.';
-      n++; store('uiseong-spins',n); cnt.textContent='이 브라우저에서 '+n+'번 뽑음';
     }
-    if(n) cnt.textContent='이 브라우저에서 '+n+'번 뽑음';
     spin.onclick=function(){ run(null); };
     document.querySelectorAll('.js-spin').forEach(function(b){ b.addEventListener('click',function(){ var fi=+b.dataset.f; document.getElementById('slot').scrollIntoView({behavior:rm?'auto':'smooth',block:'center'}); setTimeout(function(){ run(fi); }, rm?0:500); }); });
   })();
@@ -836,7 +818,7 @@ button{font:inherit}
   pop.querySelectorAll('.chips a').forEach(function(a){ a.addEventListener('click',function(){ pop.classList.remove('open'); }); });
   /* 서식 링크 */
   document.querySelectorAll('.js-form').forEach(function(a){ var u=CONFIG.forms[a.dataset.form]; if(u) a.href=u; });
-  /* 모달 + 제출 전 체크리스트 */
+  /* 모달 */
   var ov=document.getElementById('modal');
   function openM(){ ov.classList.add('open'); document.body.style.overflow='hidden'; document.getElementById('m-close').focus(); }
   function closeM(){ ov.classList.remove('open'); document.body.style.overflow=''; }
@@ -844,7 +826,6 @@ button{font:inherit}
   document.getElementById('m-close').addEventListener('click',closeM);
   ov.addEventListener('click',function(e){ if(e.target===ov) closeM(); });
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ closeM(); pop.classList.remove('open'); } });
-  (function(){ var bs=[].slice.call(document.querySelectorAll('#chk input')), dn=document.getElementById('chk-done'), key='uiseong-chk'; var sv=(store(key)||''); bs.forEach(function(b){ b.checked=sv.indexOf(b.dataset.k)>-1; }); function upd(){ var c=bs.filter(function(b){ return b.checked; }); store(key,c.map(function(b){ return b.dataset.k; }).join('')); dn.textContent = c.length===bs.length?'모두 확인했습니다. 이제 메일을 보내 주세요.': c.length+' / '+bs.length+' 확인'; } bs.forEach(function(b){ b.addEventListener('change',upd); }); upd(); })();
   /* 복사 */
   var toast=document.getElementById('toast'),tt;
   function say(m){ toast.textContent=m; toast.classList.add('show'); clearTimeout(tt); tt=setTimeout(function(){ toast.classList.remove('show'); },1800); }
